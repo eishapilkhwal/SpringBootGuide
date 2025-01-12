@@ -113,3 +113,57 @@
         - **Resource Loading**: For accessing files and other resources.
 
 ---
+
+## @SpringBootApplication
+
+- **@SpringBootApplication** is a primary annotation used in every Spring Boot project, placed over the `main` method's class.
+- It combines the functionality of three annotations:
+    1. **@Configuration**:
+        - Used to define configuration classes in Spring.
+        - Works with `@Bean` to create and manage beans.
+    2. **@EnableAutoConfiguration**:
+        - Enables automatic configuration based on the project's dependencies.
+        - Simplifies the setup process for common configurations.
+    3. **@ComponentScan**:
+        - Scans the specified package for classes annotated with `@Component`, `@Service`, `@Repository`, etc., and registers them in the IOC Container.
+
+---
+
+## @RestController
+
+- Combines the functionality of `@Controller` and `@ResponseBody`.
+- Registers the class as a Spring Bean in the IOC Container.
+- Automatically maps HTTP requests to methods using annotations like `@GetMapping`, `@PostMapping`, etc.
+
+---
+
+## @Autowired
+
+- **@Autowired** is used for dependency injection in Spring.
+- It automatically injects beans into a field, constructor, or setter method.
+- Commonly used for **field injection**, where the dependency is directly injected into the variable.
+
+Example:
+```java
+@Autowired  
+private MyService myService;  
+```
+
+## @Bean
+
+- **@Bean** is used to define a bean explicitly in a Spring configuration class.
+- Written inside a method, not at the class level.
+- The method annotated with @Bean returns an object to be managed by the Spring IOC Container.
+- Useful when you need fine-grained control over bean creation.
+
+Example
+```java
+@Configuration  
+public class AppConfig {  
+    @Bean  
+    public MyService myService() {  
+        return new MyServiceImpl();  
+    }  
+}
+```
+
