@@ -62,4 +62,54 @@
     3. Combines it with dependencies to create the final `.jar` file i.e., FAT jar file.
 
 ---
+## IOC Container
 
+- **Inversion of Control (IOC)** is a design principle where the control of object creation and dependency management is delegated to the container, rather than being handled manually by developers.
+- In Spring, the **IOC Container**:
+    - Automatically creates objects (called beans).
+    - Manages their lifecycle and dependencies.
+    - Scans the specified package (e.g., `com.xyz.pyq`) for classes annotated with `@Component`.
+    - Registers these classes as beans and provides their instances wherever needed.
+
+---
+
+## Annotations
+
+- **Annotations** are metadata in Java that provide instructions to the compiler or runtime environment.
+- They are identified by the `@` symbol and perform specific tasks or define behaviors.
+- Example: `@Component` annotation in Spring marks a class as a **Spring Bean**.
+
+---
+
+## @Component
+
+- The `@Component` annotation in Spring is used to register a class as a **Spring Bean**.
+- Key Features:
+    - Automatically detected during classpath scanning.
+    - Registers the class in the IOC Container.
+    - Eliminates the need for manual object creation, as the IOC Container provides the required instance.
+
+---
+
+## Bean
+
+- A **Bean** is an object managed by the Spring IOC Container.
+- When a class is annotated with `@Component`:
+    - The IOC Container creates an instance (bean) of the class.
+    - The bean is stored in the IOC Container.
+    - Developers can directly use this bean without explicitly initializing it, enabling **dependency injection**.
+
+---
+
+## Application Context
+
+- **ApplicationContext** is the central interface in Spring for interacting with the IOC Container.
+- Key Responsibilities:
+    - Provides access to beans managed by the IOC Container.
+    - Manages the lifecycle of beans (initialization, destruction, etc.).
+    - Supports advanced features like:
+        - **Internationalization**: For resolving messages based on locale.
+        - **Event Propagation**: For publishing and listening to application events.
+        - **Resource Loading**: For accessing files and other resources.
+
+---
