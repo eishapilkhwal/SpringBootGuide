@@ -76,3 +76,59 @@ This document provides an overview of **ORM**, **JPA**, and their usage in relat
 
 ---
 
+## Query Method DSL
+
+**Query Method DSL** (Domain-Specific Language) allows you to define queries by naming methods in repository interfaces. Spring Data automatically converts these method names into queries, providing a seamless way to interact with databases.
+
+### Key Features:
+- Simplifies query creation by avoiding explicit SQL or JPQL.
+- Uses method naming conventions to generate queries automatically.
+- Works for both relational and MongoDB databases.
+
+### Examples:
+
+#### Spring Data JPA:
+```
+public interface UserRepository extends JpaRepository<User, Long> {  
+    List<User> findByLastName(String lastName);  
+    List<User> findByAgeGreaterThan(int age);  
+}
+```
+
+#### Spring Data MongoDB:
+```
+public interface UserRepository extends MongoRepository<User, String> {  
+    List<User> findByFirstName(String firstName);  
+    List<User> findByCity(String city);  
+}
+```
+
+---
+
+## Criteria API
+
+**Criteria API** provides a programmatic way to create dynamic and complex queries. This approach is ideal when query conditions are not known at compile time.
+
+### Key Features:
+- Offers fine-grained control over query construction.
+- Suitable for dynamic and complex queries.
+- Supported in both JPA and MongoDB with slight differences.
+
+### Examples:
+
+#### Spring Data JPA:
+```
+CriteriaBuilder cb = entityManager.getCriteriaBuilder();  
+CriteriaQuery<User> query = cb.createQuery(User.class);  
+Root<User> user = query.from(User.class);  
+query.select(user).where(cb.equal(user.get("lastName"), "Smith"));  
+List<User> result = entityManager.createQuery(query).getResultList();  
+
+```
+
+#### Spring Data MongoDB:
+```
+Query query = new Query();  
+query.addCriteria(Criteria.where("age").gte(25));  
+List<User> users = mongoTemplate.find(query, User.class);  
+```
