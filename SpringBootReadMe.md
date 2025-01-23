@@ -168,4 +168,10 @@ public class AppConfig {
 ```
 ---
 
+## ResponseEntity 
+
+- The **ResponseEntity** class is part of the Spring Framework and is commonly used tin Spring Boot applications to customize the HTTP response.
+
+=======
 [Learning by doing](https://github.com/eishapilkhwal/Memoir)
+
