@@ -168,8 +168,111 @@ public class AppConfig {
 ```
 ---
 
-## ResponseEntity 
+# ResponseEntity
 
-- The **ResponseEntity** class is part of the Spring Framework and is commonly used tin Spring Boot applications to customize the HTTP response.
+- **ResponseEntity** is a class provided by the Spring Framework, commonly used in Spring Boot applications.
+- It is used to **customize HTTP responses** sent back to the client.
+- You can set the **response status**, **headers**, and **body** using this class.
+- It allows you to return different types of data (e.g., JSON, XML, HTML) from controller methods.
+- Generics can be used with `ResponseEntity<T>` to specify the type of data being returned.
+
+### Example:
+```java
+@RestController
+public class ExampleController {
+    
+    @GetMapping("/example")
+    public ResponseEntity<String> getExample() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body("Hello, this is a customized response!");
+    }
+}
+```
+
+---
+
+# Lombok
+
+**Lombok** is a Java library that helps reduce boilerplate code by automatically generating commonly used methods like **getters**, **setters**, **constructors**, and more. It is widely used in Spring Boot applications to simplify class definitions and make the code cleaner and easier to maintain.
+
+---
+
+## Benefits of Using Lombok
+- **Reduces Boilerplate Code**: Automatically generates repetitive methods like `getters`, `setters`, etc.
+- **Improves Code Readability**: Keeps the focus on business logic rather than verbose code.
+- **Saves Development Time**: Eliminates the need for manual code writing for repetitive tasks.
+
+---
+
+## How Lombok Works
+- Lombok uses **annotations** to specify what methods should be generated for a class.
+- During the **compilation phase**, Lombok scans the annotations and adds the corresponding methods to the **compiled `.class` files**.
+
+---
+
+## Common Lombok Annotations
+
+| **Annotation**        | **Description**                                                                                   |  
+|------------------------|---------------------------------------------------------------------------------------------------|  
+| `@Getter`             | Generates getter methods for all fields in the class.                                             |  
+| `@Setter`             | Generates setter methods for all fields in the class.                                             |  
+| `@NoArgsConstructor`  | Generates a no-argument constructor.                                                              |  
+| `@AllArgsConstructor` | Generates a constructor with parameters for all fields.                                           |  
+| `@ToString`           | Generates a `toString()` method.                                                                  |  
+| `@EqualsAndHashCode`  | Generates `equals()` and `hashCode()` methods.                                                    |  
+| `@Data`               | Combines `@Getter`, `@Setter`, `@ToString`, `@EqualsAndHashCode`, and `@RequiredArgsConstructor`.  |  
+| `@Builder`            | Generates a builder pattern for creating objects.                                                 |  
+
+---
+
+## Example Usage
+
+### Without Lombok
+```java
+public class User {
+    private String name;
+    private int age;
+
+    // Getters and Setters
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    // Constructor
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // toString Method
+    @Override
+    public String toString() {
+        return "User{name='" + name + "', age=" + age + "}";
+    }
+}
+```
+### With Lombok
+```java
+import lombok.Data;
+
+@Data
+public class User {
+    private String name;
+    private int age;
+}
+```
+- The @Data annotation automatically generates all the methods (getters, setters, toString, etc.) without writing them manually.
+- Lombok annotations do not add methods to the source code but directly to the compiled bytecode.
+---
 
 [Learning by doing](https://github.com/eishapilkhwal/SpringBoot/Memoir.git)
